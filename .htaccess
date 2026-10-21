@@ -27,12 +27,14 @@
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /IIUI/
+
+    # No RewriteBase: patterns here are relative to this directory, so the
+    # same file works at /IIUI/ locally and at the domain root in production.
 
     # Everything except requests already targeting public/ gets routed there.
     # The guard is required: mod_rewrite restarts per-directory matching after
     # an internal rewrite, which would otherwise double the "public/" prefix.
-    RewriteCond %{REQUEST_URI} !^/IIUI/public/
+    RewriteRule ^public/ - [L]
     RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
 

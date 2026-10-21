@@ -32,3 +32,4 @@ Thumbs.db
 
 # Raw source photos (optimized copies live in public/uploads)
 /Gallery Images/
+/iiui_mardan_live.sql
