@@ -1,0 +1,57 @@
+# =============================================================================
+# public/.htaccess — the real front-controller router.
+# Serves existing files/directories (css, js, images, fonts) as-is;
+# everything else goes through index.php.
+# =============================================================================
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# Defense in depth: dotfiles are never served from here either.
+<FilesMatch "^\.">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# -----------------------------------------------------------------------------
+# Performance: compression + browser caching
+# -----------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+    # Works without mod_filter: compress everything except formats that are already compressed.
+    SetOutputFilter DEFLATE
+    SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|webp|avif|woff2?|zip|pdf|docx?|xlsx?|mp4|mp3)$ no-gzip dont-vary
+    <IfModule mod_headers.c>
+        Header append Vary Accept-Encoding
+    </IfModule>
+</IfModule>
+
+<IfModule mod_headers.c>
+    # CSS/JS/fonts are requested as file.css?v=<mtime> (see asset() in
+    # app/Helpers/functions.php), so a changed file gets a new URL and the old
+    # one can be cached "forever".
+    <FilesMatch "\.(css|js|woff2)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    # Static files never pass through PHP, so give them the MIME-sniffing protection here.
+    <FilesMatch "\.(css|js|woff2|jpe?g|png|webp|gif|svg|ico)$">
+        Header set X-Content-Type-Options "nosniff"
+    </FilesMatch>
+    # Uploaded photos have random names; a month is safe and still lets a
+    # replaced file show up reasonably soon.
+    <FilesMatch "\.(jpe?g|png|webp|gif|svg|ico)$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+</IfModule>

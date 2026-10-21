@@ -1,0 +1,34 @@
+/.env
+/vendor/
+
+/storage/logs/*
+!/storage/logs/.gitkeep
+/storage/sessions/*
+!/storage/sessions/.gitkeep
+/storage/cache/*
+!/storage/cache/.gitkeep
+/storage/temp/*
+!/storage/temp/.gitkeep
+/storage/app/uploads/*
+!/storage/app/uploads/.gitkeep
+/storage/app/generated/*
+!/storage/app/generated/.gitkeep
+
+/public/uploads/**/*
+!/public/uploads/**/.gitkeep
+!/public/uploads/.htaccess
+
+/database/backups/*
+!/database/backups/.gitkeep
+
+.DS_Store
+Thumbs.db
+*.log
+
+# Full database dump (contains user data / password hashes) and local backups
+/iiui_mardan.sql
+/storage/backups/*
+!/storage/backups/.gitkeep
+
+# Raw source photos (optimized copies live in public/uploads)
+/Gallery Images/

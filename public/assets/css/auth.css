@@ -1,0 +1,114 @@
+/* ==========================================================================
+   public/assets/css/auth.css
+   Split-hero auth layout (L10) + the small set of form/button primitives
+   the login/forgot/reset screens need. A full component library arrives
+   with the frontend build phase — this covers just what auth requires.
+   ========================================================================== */
+
+.auth-body {
+  margin: 0;
+  background: var(--bg-body);
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+.auth-shell { display: flex; min-height: 100vh; }
+
+.auth-brand {
+  flex: 0 0 42%;
+  background: var(--red-900);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-16);
+}
+.auth-brand-logo {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 28px;
+  color: #fff;
+  text-decoration: none;
+}
+.auth-brand-logo img { height: 58px; width: auto; max-width: 100%; object-fit: contain; display: block; }
+.auth-brand h2 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  margin: var(--space-6) 0 var(--space-3);
+  font-size: var(--fs-h2);
+  color: #fff;
+}
+.auth-brand p { color: rgba(255, 255, 255, .7); margin: 0; }
+
+.auth-panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8);
+}
+.auth-card { width: 100%; max-width: var(--container-xs); }
+.auth-card h1 { font-size: var(--fs-h3); margin-bottom: var(--space-2); }
+.auth-card .lead { color: var(--text-secondary); margin-bottom: var(--space-6); font-size: var(--fs-sm); }
+
+@media (max-width: 900px) {
+  .auth-shell { flex-direction: column; }
+  .auth-brand { flex: none; padding: var(--space-8); }
+}
+
+.alert-box {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  font-size: var(--fs-sm);
+  margin-bottom: var(--space-4);
+}
+.alert-success { background: var(--success-50); color: var(--success-700); border: 1px solid var(--success-200); }
+.alert-error   { background: var(--danger-50);  color: var(--danger-700);  border: 1px solid var(--danger-200); }
+
+.field { margin-bottom: var(--space-4); }
+.field label {
+  display: block;
+  font-size: var(--fs-admin-label);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+  color: var(--text-primary);
+}
+.inp {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  font-size: 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+.inp:focus {
+  outline: none;
+  border-color: var(--red-500);
+  box-shadow: var(--shadow-focus);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-primary { background: var(--brand-solid); color: #fff; }
+.btn-primary:hover { background: var(--brand-solid-hover); text-decoration: none; }
+.btn-block { width: 100%; margin-top: var(--space-2); }
+
+.auth-links { margin-top: var(--space-4); font-size: var(--fs-sm); text-align: center; }
+
+/* Logo plate — black lettering needs a light ground on the red brand panel. */
+.auth-brand-logo img { background: #fff; padding: 8px 14px; border-radius: var(--radius-lg); box-sizing: content-box; height: 54px; box-shadow: var(--shadow-md); }

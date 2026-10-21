@@ -1,0 +1,47 @@
+# =============================================================================
+# ROOT .htaccess — fallback router for running WITHOUT a virtual host
+# -----------------------------------------------------------------------------
+# This is Option B from docs/01-architecture.md §3, active because this
+# project currently lives inside XAMPP's htdocs at /IIUI with no vhost
+# pointing at /public. It transparently routes every request through
+# public/, so clean URLs like /IIUI/students work without /public/ ever
+# appearing in the address bar.
+#
+# PRODUCTION MUST USE OPTION A INSTEAD: point the web server's DocumentRoot
+# directly at /public and delete this file. A root .htaccess rewrite is a
+# compatibility shim, not a security boundary on its own — the deny rules
+# below are the actual boundary until Option A is in place.
+# =============================================================================
+
+# Dotfiles (.env, .git…) and raw source/log/SQL files are never served,
+# regardless of what the rewrite below does.
+<FilesMatch "(^\.|\.(env|sql|log|md|lock)$)">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /IIUI/
+
+    # Everything except requests already targeting public/ gets routed there.
+    # The guard is required: mod_rewrite restarts per-directory matching after
+    # an internal rewrite, which would otherwise double the "public/" prefix.
+    RewriteCond %{REQUEST_URI} !^/IIUI/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</IfModule>

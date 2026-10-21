@@ -1,0 +1,465 @@
+/* Brand typefaces, self-hosted (no third-party request, identical on every device).
+   Inter = interface/body text, Source Serif 4 = headings and quotes. Variable
+   fonts, so every weight the site uses comes from one file each. */
+@font-face {
+  font-family: "Inter"; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url("../fonts/inter-latin-wght-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Source Serif 4"; font-style: normal; font-weight: 200 900; font-display: swap;
+  src: url("../fonts/source-serif-4-latin-wght-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Source Serif 4"; font-style: italic; font-weight: 200 900; font-display: swap;
+  src: url("../fonts/source-serif-4-latin-wght-italic.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* ==========================================================================
+   IIUI Schools & College – Mardan Campus
+   DESIGN TOKENS  ·  v2.0 — Deep Red / Golden Yellow rebrand
+   --------------------------------------------------------------------------
+   The single source of truth for the design system.
+   Specification: docs/08-design-foundations.md · docs/09-design-components.md
+
+   RULE: components reference SEMANTIC tokens (--bg-*, --text-*, --border-*,
+   --brand-*). Raw palette tokens (--red-500 …) are for defining semantics
+   only — never use them directly in a component.
+   ========================================================================== */
+
+:root {
+
+  /* ======================================================================
+     1. PALETTE — raw scales (do not use directly in components)
+     ====================================================================== */
+
+  /* Primary — Deep Red */
+  --red-50:  #FFEBEE;
+  --red-100: #FFCDD2;
+  --red-200: #EF9A9A;
+  --red-300: #E57373;
+  --red-400: #EF5350;
+  --red-500: #F44336;
+  --red-600: #E53935;
+  --red-700: #D32F2F;
+  --red-800: #C62828;   /* BRAND CORE */
+  --red-900: #A61D1D;   /* BRAND HOVER */
+  --red-950: #7A1515;   /* BRAND ACTIVE / deepest */
+
+  /* Accent — Golden Yellow  (700 is SURFACE-ONLY: needs dark text) */
+  --yellow-50:  #FFFDE7;
+  --yellow-100: #FFF9C4;
+  --yellow-200: #FFF59D;
+  --yellow-300: #FFF176;
+  --yellow-400: #FFEE58;
+  --yellow-500: #FFEB3B;
+  --yellow-600: #FDD835;
+  --yellow-700: #FBC02D;   /* ACCENT CORE — needs dark text */
+  --yellow-800: #F9A825;   /* ACCENT HOVER */
+  --yellow-900: #F57F17;
+  --yellow-950: #7A5209;   /* yellow text on light — 6.9:1 */
+
+  /* Neutrals — true gray */
+  --neutral-0:   #FFFFFF;
+  --neutral-50:  #F9FAFB;
+  --neutral-100: #F3F4F6;
+  --neutral-200: #E5E5E5;
+  --neutral-300: #D1D5DB;
+  --neutral-400: #9CA3AF;
+  --neutral-500: #6B7280;
+  --neutral-600: #4B5563;
+  --neutral-700: #374151;
+  --neutral-800: #1F2937;
+  --neutral-900: #111827;
+  --neutral-950: #030712;
+
+  /* Dark — Charcoal Black (structural, not part of the neutral scale) */
+  --charcoal: #212121;
+
+  /* Semantic scales */
+  --success-50:  #E7F7F1;  --success-200: #A7E5CE;
+  --success-500: #0E9F6E;  --success-700: #056B47;
+  --warning-50:  #FEF6E7;  --warning-200: #FBDCA1;
+  --warning-500: #D97706;  --warning-700: #92400E;
+  --danger-50:   #FDECEC;  --danger-200:  #F7BBBB;
+  --danger-500:  #DC2626;  --danger-700:  #B01818;
+  --info-50:     #E8F4FB;  --info-200:    #A8D8F0;
+  --info-500:    #0284C7;  --info-700:    #02638F;
+  --violet-500:  #7C3AED;  --violet-50:   #F3EDFE;
+
+  /* Data visualisation — categorical, ordered by first use */
+  --chart-1: #C62828;  --chart-2: #FBC02D;  --chart-3: #0284C7;
+  --chart-4: #7C3AED;  --chart-5: #0E9F6E;  --chart-6: #D97706;
+  --chart-7: #BE185D;  --chart-8: #0F766E;
+  --chart-grid: var(--border-subtle);
+
+
+  /* ======================================================================
+     2. TYPOGRAPHY
+     ====================================================================== */
+
+  --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-sans:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-urdu:    "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", serif;
+
+  /* Public scale — display sizes fluid, body sizes fixed */
+  --fs-display-1: clamp(2.5rem, 1.5rem + 4.4vw, 4.5rem);
+  --fs-display-2: clamp(2rem, 1.4rem + 2.8vw, 3.25rem);
+  --fs-h1:        clamp(1.875rem, 1.4rem + 2.2vw, 3rem);
+  --fs-h2:        clamp(1.5rem, 1.25rem + 1.2vw, 2.25rem);
+  --fs-h3:        1.75rem;
+  --fs-h4:        1.375rem;
+  --fs-h5:        1.125rem;
+  --fs-h6:        1rem;
+  --fs-lead:      1.1875rem;
+  --fs-body:      1rem;
+  --fs-sm:        0.875rem;
+  --fs-xs:        0.8125rem;
+  --fs-overline:  0.75rem;
+
+  /* Admin scale */
+  --fs-admin-page-title: 1.375rem;
+  --fs-admin-section:    1rem;
+  --fs-admin-body:       0.875rem;
+  --fs-admin-table:      0.875rem;
+  --fs-admin-label:      0.8125rem;
+  --fs-admin-help:       0.75rem;
+  --fs-admin-th:         0.6875rem;
+  --fs-stat-value:       1.75rem;
+
+  /* Line heights */
+  --lh-none: 1;      --lh-tight: 1.15;  --lh-snug: 1.3;
+  --lh-normal: 1.5;  --lh-relaxed: 1.65; --lh-loose: 1.8;
+  --lh-urdu: 2.05;   /* Nastaliq descends far below the baseline */
+
+  /* Weights — only four, deliberately */
+  --fw-regular: 400;  --fw-medium: 500;
+  --fw-semibold: 600; --fw-bold: 700;
+
+  /* Tracking */
+  --ls-tighter: -0.025em;  --ls-tight: -0.015em;
+  --ls-normal: 0;          --ls-wide: 0.06em;   --ls-widest: 0.1em;
+
+  --measure: 68ch;
+
+
+  /* ======================================================================
+     3. SPACING — 4px base, 8px rhythm
+     ====================================================================== */
+
+  --space-0:  0;      --space-1:  0.25rem;  /*  4 */
+  --space-2:  0.5rem; /*  8 */  --space-3:  0.75rem;  /* 12 */
+  --space-4:  1rem;   /* 16 */  --space-5:  1.25rem;  /* 20 */
+  --space-6:  1.5rem; /* 24 */  --space-8:  2rem;     /* 32 */
+  --space-10: 2.5rem; /* 40 */  --space-12: 3rem;     /* 48 */
+  --space-16: 4rem;   /* 64 */  --space-20: 5rem;     /* 80 */
+  --space-24: 6rem;   /* 96 */  --space-32: 8rem;     /*128 */
+
+  --section-y: var(--space-12);          /* responsive, see §9 */
+  --gutter:    var(--space-4);           /* responsive, see §9 */
+
+
+  /* ======================================================================
+     4. LAYOUT
+     ====================================================================== */
+
+  --container-xs:    480px;
+  --container-sm:    640px;
+  --container-md:    768px;
+  --container-lg:    1024px;
+  --container-xl:    1200px;   /* default public */
+  --container-2xl:   1320px;
+  --container-admin: 1600px;
+
+  --sidebar-w:           264px;
+  --sidebar-w-collapsed: 76px;
+  --navbar-h:            80px;
+  --navbar-h-scrolled:   64px;
+  --topbar-h:            36px;
+  --admin-topbar-h:      64px;
+
+  /* Breakpoints — mirror Bootstrap 5 (reference only; media queries need literals) */
+  --bp-sm: 576px;  --bp-md: 768px;  --bp-lg: 992px;
+  --bp-xl: 1200px; --bp-xxl: 1400px;
+
+
+  /* ======================================================================
+     5. RADIUS
+     ====================================================================== */
+
+  --radius-xs:     4px;
+  --radius-sm:     6px;
+  --radius-md:     10px;   /* buttons, inputs */
+  --radius-lg:     16px;   /* cards, dropdowns, alerts */
+  --radius-xl:     20px;   /* modals */
+  --radius-2xl:    28px;
+  --radius-pill:   999px;
+  --radius-circle: 50%;
+
+
+  /* ======================================================================
+     6. SHADOWS — two-layer, tinted with --neutral-950 (never pure black)
+     ====================================================================== */
+
+  --shadow-xs:  0 1px 2px rgba(3, 7, 18, .05);
+  --shadow-sm:  0 1px 3px rgba(3, 7, 18, .08), 0 1px 2px rgba(3, 7, 18, .04);
+  --shadow-md:  0 4px 12px -2px rgba(3, 7, 18, .10), 0 2px 4px -2px rgba(3, 7, 18, .06);
+  --shadow-lg:  0 12px 24px -6px rgba(3, 7, 18, .12), 0 4px 8px -4px rgba(3, 7, 18, .06);
+  --shadow-xl:  0 24px 48px -12px rgba(3, 7, 18, .16), 0 8px 16px -8px rgba(3, 7, 18, .08);
+  --shadow-2xl: 0 40px 80px -20px rgba(3, 7, 18, .22);
+  --shadow-inner: inset 0 2px 4px rgba(3, 7, 18, .05);
+
+  --shadow-focus:        0 0 0 3px rgba(198, 40, 40, .28);
+  --shadow-focus-danger: 0 0 0 3px rgba(220, 38, 38, .25);
+
+  /* Colored hover glow — layered alongside --shadow-lg/-md (never replacing
+     it) on cards and primary/accent buttons so interaction feels branded
+     rather than a generic gray lift. Two tones (brand red, accent gold) so
+     hover states can pick whichever reads better against that surface. */
+  --shadow-glow-brand:  0 14px 32px -8px rgba(198, 40, 40, .28);
+  --shadow-glow-accent: 0 14px 32px -8px rgba(251, 192, 45, .38);
+
+
+  /* ======================================================================
+     7. GLASS  (see docs/08 §8 — max 3 surfaces per viewport)
+     ====================================================================== */
+
+  --glass-bg:          rgba(255, 255, 255, .72);
+  --glass-bg-fallback: rgba(255, 255, 255, .94);
+  --glass-border:      rgba(255, 255, 255, .55);
+  --glass-brand-bg:     rgba(58, 12, 12, .55);
+  --glass-brand-border: rgba(251, 192, 45, .22);
+  --glass-blur-sm: blur(8px);
+  --glass-blur-md: blur(16px) saturate(180%);
+  --glass-blur-lg: blur(28px) saturate(160%);
+
+  --backdrop: rgba(33, 33, 33, .55);
+
+
+  /* ======================================================================
+     8. MOTION
+     ====================================================================== */
+
+  --dur-instant: 0ms;
+  --dur-fast:    150ms;
+  --dur-base:    200ms;
+  --dur-slow:    300ms;
+  --dur-slower:  500ms;
+  --dur-slowest: 800ms;
+
+  --ease-standard:   cubic-bezier(.4, 0, .2, 1);
+  --ease-out:        cubic-bezier(0, 0, .2, 1);
+  --ease-in:         cubic-bezier(.4, 0, 1, 1);
+  --ease-emphasized: cubic-bezier(.34, 1.56, .64, 1);
+
+
+  /* ======================================================================
+     9. ICONS & CONTROL SIZES
+     ====================================================================== */
+
+  --icon-xs: 14px;  --icon-sm: 16px;  --icon-md: 20px;
+  --icon-lg: 24px;  --icon-xl: 32px;  --icon-2xl: 48px;
+
+  --control-h-xs: 28px;  --control-h-sm: 34px;  --control-h-md: 40px;
+  --control-h-lg: 48px;  --control-h-xl: 56px;
+  --touch-target: 44px;
+
+  --row-h-dense:       36px;
+  --row-h-default:     44px;
+  --row-h-comfortable: 52px;
+
+
+  /* ======================================================================
+     10. Z-INDEX — named scale, no arbitrary values anywhere else
+     ====================================================================== */
+
+  --z-base: 0;        --z-raised: 10;      --z-sticky: 100;
+  --z-navbar: 200;    --z-sidebar: 300;    --z-dropdown: 400;
+  --z-backdrop: 500;  --z-modal: 600;      --z-toast: 700;
+  --z-tooltip: 800;   --z-max: 9999;
+}
+
+
+/* ==========================================================================
+   SEMANTIC TOKENS — LIGHT (default)
+   Components must reference ONLY these.
+   ========================================================================== */
+
+:root,
+[data-bs-theme="light"] {
+  --bg-body:            #FDFAF3;
+  --bg-surface:         var(--neutral-0);
+  --bg-surface-raised:  var(--neutral-0);
+  --bg-surface-overlay: var(--neutral-0);
+  --bg-subtle:          #FAFAFA;
+  --bg-muted:           var(--neutral-100);
+  --bg-inverse:         var(--charcoal);
+
+  --text-primary:   var(--neutral-800);
+  --text-secondary: var(--neutral-600);   /* 7.5:1 on white, still >= 6:1 on the pastel card tints */
+  --text-muted:     var(--neutral-500);   /* 4.8:1 on white (was neutral-400 at 2.5:1) */
+  --text-disabled:  var(--neutral-300);
+  --text-inverse:   var(--neutral-0);
+  --text-link:      var(--red-800);
+  --text-link-hover:var(--red-900);
+
+  --border-subtle: var(--neutral-100);
+  --border-default:var(--neutral-200);
+  --border-strong: var(--neutral-300);
+
+  --brand-solid:        var(--red-800);
+  --brand-solid-hover:  var(--red-900);
+  --brand-solid-active: var(--red-950);
+  --brand-text:         var(--red-800);
+  --brand-tint:         var(--red-50);
+  --brand-tint-border:  var(--red-200);
+
+  --accent-solid:       var(--yellow-700);
+  --accent-solid-hover: var(--yellow-800);
+  --accent-on-solid:    var(--neutral-900);   /* dark text on gold */
+  --accent-text:        var(--yellow-950);
+  --accent-tint:        var(--yellow-50);
+
+  --sidebar-bg:            var(--charcoal);
+  --sidebar-item:          rgba(255, 255, 255, .70);
+  --sidebar-item-hover-bg: rgba(255, 255, 255, .06);
+  --sidebar-item-active-bg:rgba(198, 40, 40, .22);
+  --sidebar-label:         rgba(255, 255, 255, .38);
+  --sidebar-border:        rgba(255, 255, 255, .06);
+}
+
+
+/* ==========================================================================
+   SEMANTIC TOKENS — DARK
+   Elevation is expressed as surface LIGHTNESS, not stronger shadows.
+   ========================================================================== */
+
+[data-bs-theme="dark"] {
+  --bg-body:            #171717;   /* never pure black */
+  --bg-surface:         var(--charcoal);
+  --bg-surface-raised:  #2A2A2A;
+  --bg-surface-overlay: #333333;
+  --bg-subtle:          #262626;
+  --bg-muted:           #333333;
+  --bg-inverse:         var(--yellow-50);
+
+  --text-primary:    #ECECEC;
+  --text-secondary:  #B3B3B3;
+  --text-muted:      #8A8A8A;
+  --text-disabled:   #616161;
+  --text-inverse:    var(--charcoal);
+  --text-link:       var(--red-300);
+  --text-link-hover: var(--red-200);
+
+  --border-subtle:  rgba(255, 255, 255, .06);
+  --border-default: rgba(255, 255, 255, .10);
+  --border-strong:  rgba(255, 255, 255, .16);
+
+  --brand-solid:        var(--red-500);
+  --brand-solid-hover:  var(--red-600);
+  --brand-solid-active: var(--red-700);
+  --brand-text:         var(--red-300);
+  --brand-tint:         rgba(198, 40, 40, .16);
+  --brand-tint-border:  rgba(198, 40, 40, .32);
+
+  --accent-solid:       var(--yellow-400);
+  --accent-solid-hover: var(--yellow-300);
+  --accent-on-solid:    var(--neutral-950);
+  --accent-text:        var(--yellow-300);
+  --accent-tint:        rgba(251, 192, 45, .14);
+
+  /* Semantic scales re-tuned: tints darken, text-shades brighten */
+  --success-50: rgba(14, 159, 110, .14);  --success-700: #5BD6A8;
+  --warning-50: rgba(217, 119, 6,  .14);  --warning-700: #F0B65C;
+  --danger-50:  rgba(220, 38, 38,  .14);  --danger-700:  #F08C8C;
+  --info-50:    rgba(2, 132, 199,  .14);  --info-700:    #6FC0EC;
+
+  /* Shadows roughly halved — borders do the separating work */
+  --shadow-xs:  0 1px 2px rgba(0, 0, 0, .24);
+  --shadow-sm:  0 1px 3px rgba(0, 0, 0, .32), 0 1px 2px rgba(0, 0, 0, .20);
+  --shadow-md:  0 4px 12px -2px rgba(0, 0, 0, .38), 0 2px 4px -2px rgba(0, 0, 0, .24);
+  --shadow-lg:  0 12px 24px -6px rgba(0, 0, 0, .44), 0 4px 8px -4px rgba(0, 0, 0, .28);
+  --shadow-xl:  0 24px 48px -12px rgba(0, 0, 0, .52), 0 8px 16px -8px rgba(0, 0, 0, .32);
+  --shadow-2xl: 0 40px 80px -20px rgba(0, 0, 0, .60);
+  --shadow-focus: 0 0 0 3px rgba(244, 67, 54, .34);
+  --shadow-glow-brand:  0 14px 32px -8px rgba(244, 67, 54, .38);
+  --shadow-glow-accent: 0 14px 32px -8px rgba(255, 238, 88, .30);
+
+  --glass-bg:          rgba(23, 23, 23, .62);
+  --glass-bg-fallback: rgba(23, 23, 23, .94);
+  --glass-border:      rgba(255, 255, 255, .08);
+  --backdrop:          rgba(0, 0, 0, .68);
+
+  /* Chart series brightened for dark surfaces */
+  --chart-1: #EF5350;  --chart-2: #FFEE58;  --chart-3: #4BA9E3;
+  --chart-4: #A47BF2;  --chart-5: #38C79A;  --chart-6: #EFA13F;
+  --chart-7: #E5679D;  --chart-8: #3FA8A0;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE TOKEN OVERRIDES
+   ========================================================================== */
+
+@media (min-width: 576px) { :root { --gutter: var(--space-6); } }
+
+@media (min-width: 768px) {
+  :root { --section-y: var(--space-16); }
+}
+
+@media (min-width: 992px) {
+  :root { --gutter: var(--space-8); }
+}
+
+@media (min-width: 1200px) {
+  :root { --section-y: var(--space-20); }
+}
+
+
+/* ==========================================================================
+   REDUCED MOTION — accessibility requirement, not a preference
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 1ms;  --dur-base: 1ms;    --dur-slow: 1ms;
+    --dur-slower: 1ms; --dur-slowest: 1ms;
+  }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* ==========================================================================
+   FORCED COLORS (Windows High Contrast)
+   ========================================================================== */
+
+@media (forced-colors: active) {
+  :root {
+    --shadow-sm: none; --shadow-md: none; --shadow-lg: none;
+    --shadow-xl: none; --shadow-2xl: none;
+  }
+  /* Glass panels must become opaque — a blur has no meaning in forced colors */
+  .glass, .glass-brand { backdrop-filter: none !important; }
+}
+
+
+/* ==========================================================================
+   PRINT — always light, no chrome, no colour-dependent meaning
+   ========================================================================== */
+
+@media print {
+  :root {
+    --bg-body: #FFFFFF;  --bg-surface: #FFFFFF;  --bg-subtle: #FFFFFF;
+    --text-primary: #000000;  --text-secondary: #333333;
+    --border-default: #999999;  --border-subtle: #CCCCCC;
+    --shadow-xs: none; --shadow-sm: none; --shadow-md: none;
+    --shadow-lg: none; --shadow-xl: none; --shadow-2xl: none;
+  }
+}

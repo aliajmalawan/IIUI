@@ -1,0 +1,999 @@
+<title>IIUI Design System v1.0</title>
+
+<style>
+/* ==========================================================================
+   IIUI Schools & College — Mardan Campus · Living Style Guide
+   Built entirely from public/assets/css/tokens.css
+   NOTE: production uses [data-bs-theme] (Bootstrap 5.3 native).
+   This preview uses [data-theme] because that is what the viewer toggle sets.
+   ========================================================================== */
+
+:root {
+  /* Palette — Campus Green */
+  --green-50:#ECF7F1;  --green-100:#D3ECDF; --green-200:#A8D9C0; --green-300:#74C09C;
+  --green-400:#45A379; --green-500:#26855D; --green-600:#1A6B4A; --green-700:#14563D;
+  --green-800:#124531; --green-900:#0F3929; --green-950:#071F16;
+  /* Palette — Heritage Gold */
+  --gold-50:#FDF8EC;  --gold-100:#FAEECF; --gold-200:#F4DA9C; --gold-300:#EBC162;
+  --gold-400:#DFA733; --gold-500:#C68B1B; --gold-600:#A67114; --gold-700:#855913;
+  --gold-800:#6D4915; --gold-900:#5C3D16;
+  /* Palette — Warm Slate */
+  --neutral-0:#FFFFFF;  --neutral-50:#F7F9F8;  --neutral-100:#EEF2F0; --neutral-200:#DFE5E2;
+  --neutral-300:#C6D0CC; --neutral-400:#9AA8A3; --neutral-500:#71807B; --neutral-600:#57645F;
+  --neutral-700:#434E4A; --neutral-800:#2D3733; --neutral-900:#1C2421; --neutral-950:#111714;
+  /* Semantic */
+  --success-50:#E7F7F1; --success-200:#A7E5CE; --success-500:#0E9F6E; --success-700:#056B47;
+  --warning-50:#FEF6E7; --warning-200:#FBDCA1; --warning-500:#D97706; --warning-700:#92400E;
+  --danger-50:#FDECEC;  --danger-200:#F7BBBB;  --danger-500:#DC2626;  --danger-700:#B01818;
+  --info-50:#E8F4FB;    --info-200:#A8D8F0;    --info-500:#0284C7;    --info-700:#02638F;
+  --violet-500:#7C3AED; --violet-50:#F3EDFE;
+
+  /* Type — production self-hosts Source Serif 4 + Inter + JetBrains Mono as WOFF2.
+     This preview falls back to the nearest system faces (CSP blocks font CDNs). */
+  --font-display:"Source Serif 4",Georgia,"Iowan Old Style","Times New Roman",serif;
+  --font-sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,"Cascadia Mono",Menlo,monospace;
+
+  --space-1:4px;  --space-2:8px;  --space-3:12px; --space-4:16px; --space-5:20px;
+  --space-6:24px; --space-8:32px; --space-10:40px; --space-12:48px; --space-16:64px;
+  --space-20:80px; --space-24:96px;
+
+  --radius-xs:4px; --radius-sm:6px; --radius-md:10px; --radius-lg:14px;
+  --radius-xl:20px; --radius-2xl:28px; --radius-pill:999px;
+
+  --shadow-xs:0 1px 2px rgba(17,23,20,.05);
+  --shadow-sm:0 1px 3px rgba(17,23,20,.08),0 1px 2px rgba(17,23,20,.04);
+  --shadow-md:0 4px 12px -2px rgba(17,23,20,.10),0 2px 4px -2px rgba(17,23,20,.06);
+  --shadow-lg:0 12px 24px -6px rgba(17,23,20,.12),0 4px 8px -4px rgba(17,23,20,.06);
+  --shadow-xl:0 24px 48px -12px rgba(17,23,20,.16),0 8px 16px -8px rgba(17,23,20,.08);
+  --shadow-2xl:0 40px 80px -20px rgba(17,23,20,.22);
+  --shadow-focus:0 0 0 3px rgba(38,133,93,.28);
+
+  --dur-fast:150ms; --dur-base:200ms; --dur-slow:300ms;
+  --ease-standard:cubic-bezier(.4,0,.2,1);
+  --ease-out:cubic-bezier(0,0,.2,1);
+  --ease-emphasized:cubic-bezier(.34,1.56,.64,1);
+
+  /* Semantic — light */
+  --bg-body:#F4F7F5; --bg-surface:#FFFFFF; --bg-raised:#FFFFFF;
+  --bg-subtle:var(--neutral-50); --bg-muted:var(--neutral-100); --bg-inverse:var(--neutral-900);
+  --text-primary:var(--neutral-900); --text-secondary:var(--neutral-600);
+  --text-muted:var(--neutral-500); --text-disabled:var(--neutral-400); --text-inverse:#FFFFFF;
+  --border-subtle:var(--neutral-100); --border-default:var(--neutral-200); --border-strong:var(--neutral-300);
+  --brand-solid:var(--green-700); --brand-hover:var(--green-800); --brand-text:var(--green-700);
+  --brand-tint:var(--green-50); --brand-tint-border:var(--green-200);
+  --accent-solid:var(--gold-500); --accent-hover:var(--gold-600);
+  --accent-on-solid:var(--neutral-900); --accent-text:var(--gold-700); --accent-tint:var(--gold-50);
+  --glass-bg:rgba(255,255,255,.72); --glass-border:rgba(255,255,255,.55);
+  --sidebar-bg:#0B1712;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-body:#0E1512; --bg-surface:#141C18; --bg-raised:#1B2621;
+    --bg-subtle:#1B2621; --bg-muted:#23302A; --bg-inverse:var(--green-50);
+    --text-primary:#E8EEEB; --text-secondary:#A9B6B0;
+    --text-muted:#7F8D87; --text-disabled:#5C6A65; --text-inverse:#0E1512;
+    --border-subtle:rgba(255,255,255,.06); --border-default:rgba(255,255,255,.10);
+    --border-strong:rgba(255,255,255,.16);
+    --brand-solid:var(--green-500); --brand-hover:var(--green-600); --brand-text:var(--green-300);
+    --brand-tint:rgba(38,133,93,.16); --brand-tint-border:rgba(38,133,93,.32);
+    --accent-solid:var(--gold-400); --accent-hover:var(--gold-300);
+    --accent-on-solid:var(--neutral-950); --accent-text:var(--gold-300);
+    --accent-tint:rgba(198,139,27,.14);
+    --success-50:rgba(14,159,110,.14); --success-200:rgba(14,159,110,.34); --success-700:#5BD6A8;
+    --warning-50:rgba(217,119,6,.14);  --warning-200:rgba(217,119,6,.34);  --warning-700:#F0B65C;
+    --danger-50:rgba(220,38,38,.14);   --danger-200:rgba(220,38,38,.34);   --danger-700:#F08C8C;
+    --info-50:rgba(2,132,199,.14);     --info-200:rgba(2,132,199,.34);     --info-700:#6FC0EC;
+    --shadow-xs:0 1px 2px rgba(0,0,0,.24);
+    --shadow-sm:0 1px 3px rgba(0,0,0,.32),0 1px 2px rgba(0,0,0,.20);
+    --shadow-md:0 4px 12px -2px rgba(0,0,0,.38),0 2px 4px -2px rgba(0,0,0,.24);
+    --shadow-lg:0 12px 24px -6px rgba(0,0,0,.44),0 4px 8px -4px rgba(0,0,0,.28);
+    --shadow-xl:0 24px 48px -12px rgba(0,0,0,.52),0 8px 16px -8px rgba(0,0,0,.32);
+    --shadow-2xl:0 40px 80px -20px rgba(0,0,0,.60);
+    --shadow-focus:0 0 0 3px rgba(69,163,121,.34);
+    --glass-bg:rgba(14,21,18,.62); --glass-border:rgba(255,255,255,.08);
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg-body:#0E1512; --bg-surface:#141C18; --bg-raised:#1B2621;
+  --bg-subtle:#1B2621; --bg-muted:#23302A; --bg-inverse:var(--green-50);
+  --text-primary:#E8EEEB; --text-secondary:#A9B6B0;
+  --text-muted:#7F8D87; --text-disabled:#5C6A65; --text-inverse:#0E1512;
+  --border-subtle:rgba(255,255,255,.06); --border-default:rgba(255,255,255,.10);
+  --border-strong:rgba(255,255,255,.16);
+  --brand-solid:var(--green-500); --brand-hover:var(--green-600); --brand-text:var(--green-300);
+  --brand-tint:rgba(38,133,93,.16); --brand-tint-border:rgba(38,133,93,.32);
+  --accent-solid:var(--gold-400); --accent-hover:var(--gold-300);
+  --accent-on-solid:var(--neutral-950); --accent-text:var(--gold-300);
+  --accent-tint:rgba(198,139,27,.14);
+  --success-50:rgba(14,159,110,.14); --success-200:rgba(14,159,110,.34); --success-700:#5BD6A8;
+  --warning-50:rgba(217,119,6,.14);  --warning-200:rgba(217,119,6,.34);  --warning-700:#F0B65C;
+  --danger-50:rgba(220,38,38,.14);   --danger-200:rgba(220,38,38,.34);   --danger-700:#F08C8C;
+  --info-50:rgba(2,132,199,.14);     --info-200:rgba(2,132,199,.34);     --info-700:#6FC0EC;
+  --shadow-xs:0 1px 2px rgba(0,0,0,.24);
+  --shadow-sm:0 1px 3px rgba(0,0,0,.32),0 1px 2px rgba(0,0,0,.20);
+  --shadow-md:0 4px 12px -2px rgba(0,0,0,.38),0 2px 4px -2px rgba(0,0,0,.24);
+  --shadow-lg:0 12px 24px -6px rgba(0,0,0,.44),0 4px 8px -4px rgba(0,0,0,.28);
+  --shadow-xl:0 24px 48px -12px rgba(0,0,0,.52),0 8px 16px -8px rgba(0,0,0,.32);
+  --shadow-2xl:0 40px 80px -20px rgba(0,0,0,.60);
+  --shadow-focus:0 0 0 3px rgba(69,163,121,.34);
+  --glass-bg:rgba(14,21,18,.62); --glass-border:rgba(255,255,255,.08);
+}
+
+:root[data-theme="light"] {
+  --bg-body:#F4F7F5; --bg-surface:#FFFFFF; --bg-raised:#FFFFFF;
+  --bg-subtle:var(--neutral-50); --bg-muted:var(--neutral-100); --bg-inverse:var(--neutral-900);
+  --text-primary:var(--neutral-900); --text-secondary:var(--neutral-600);
+  --text-muted:var(--neutral-500); --text-disabled:var(--neutral-400); --text-inverse:#FFFFFF;
+  --border-subtle:var(--neutral-100); --border-default:var(--neutral-200); --border-strong:var(--neutral-300);
+  --brand-solid:var(--green-700); --brand-hover:var(--green-800); --brand-text:var(--green-700);
+  --brand-tint:var(--green-50); --brand-tint-border:var(--green-200);
+  --accent-solid:var(--gold-500); --accent-hover:var(--gold-600);
+  --accent-on-solid:var(--neutral-900); --accent-text:var(--gold-700); --accent-tint:var(--gold-50);
+  --success-50:#E7F7F1; --success-200:#A7E5CE; --success-700:#056B47;
+  --warning-50:#FEF6E7; --warning-200:#FBDCA1; --warning-700:#92400E;
+  --danger-50:#FDECEC;  --danger-200:#F7BBBB;  --danger-700:#B01818;
+  --info-50:#E8F4FB;    --info-200:#A8D8F0;    --info-700:#02638F;
+  --shadow-xs:0 1px 2px rgba(17,23,20,.05);
+  --shadow-sm:0 1px 3px rgba(17,23,20,.08),0 1px 2px rgba(17,23,20,.04);
+  --shadow-md:0 4px 12px -2px rgba(17,23,20,.10),0 2px 4px -2px rgba(17,23,20,.06);
+  --shadow-lg:0 12px 24px -6px rgba(17,23,20,.12),0 4px 8px -4px rgba(17,23,20,.06);
+  --shadow-xl:0 24px 48px -12px rgba(17,23,20,.16),0 8px 16px -8px rgba(17,23,20,.08);
+  --shadow-2xl:0 40px 80px -20px rgba(17,23,20,.22);
+  --shadow-focus:0 0 0 3px rgba(38,133,93,.28);
+  --glass-bg:rgba(255,255,255,.72); --glass-border:rgba(255,255,255,.55);
+}
+
+/* ---------- page shell ---------- */
+.sg { font-family:var(--font-sans); background:var(--bg-body); color:var(--text-primary);
+      -webkit-font-smoothing:antialiased; line-height:1.65; font-size:15px; }
+.sg *,.sg *::before,.sg *::after { box-sizing:border-box; }
+.sg :focus-visible { outline:2px solid var(--brand-solid); outline-offset:2px; border-radius:var(--radius-xs); }
+
+.sg-wrap { max-width:1240px; margin-inline:auto; padding-inline:var(--space-6); }
+
+/* ---------- masthead ---------- */
+.sg-masthead { background:var(--green-950); color:#fff; padding:var(--space-16) 0 var(--space-12);
+  border-bottom:3px solid var(--gold-500); position:relative; overflow:hidden; }
+.sg-masthead::after { content:""; position:absolute; inset:0;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(198,139,27,.5) 0 1px, transparent 1px 34px),
+    repeating-linear-gradient(-45deg, rgba(198,139,27,.5) 0 1px, transparent 1px 34px);
+  opacity:.09; pointer-events:none; }
+.sg-masthead > * { position:relative; z-index:1; }
+.sg-eyebrow { font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--gold-300); margin:0 0 var(--space-4); }
+.sg-masthead h1 { font-family:var(--font-display); font-weight:600; letter-spacing:-.025em;
+  font-size:clamp(2.25rem,1.4rem+3.4vw,3.5rem); line-height:1.05; margin:0 0 var(--space-4);
+  text-wrap:balance; max-width:16ch; }
+.sg-masthead p { max-width:60ch; color:rgba(255,255,255,.76); font-size:17px; margin:0; }
+.sg-meta { display:flex; flex-wrap:wrap; gap:var(--space-2); margin-top:var(--space-8); }
+.sg-meta span { font-family:var(--font-mono); font-size:12px; padding:5px 11px;
+  border:1px solid rgba(198,139,27,.35); border-radius:var(--radius-pill); color:var(--gold-200); }
+
+/* ---------- layout ---------- */
+.sg-body { display:grid; grid-template-columns:1fr; gap:var(--space-12);
+  padding-block:var(--space-12) var(--space-24); }
+@media (min-width:1000px) { .sg-body { grid-template-columns:212px 1fr; gap:var(--space-16); } }
+
+.sg-index { display:none; }
+@media (min-width:1000px) {
+  .sg-index { display:block; position:sticky; top:var(--space-6); align-self:start;
+    max-height:calc(100vh - 48px); overflow-y:auto; }
+}
+.sg-index h2 { font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--text-muted); margin:0 0 var(--space-3); }
+.sg-index ol { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;
+  counter-reset:idx; }
+.sg-index a { display:flex; gap:var(--space-3); align-items:baseline; text-decoration:none;
+  color:var(--text-secondary); font-size:13.5px; padding:5px var(--space-2); border-radius:var(--radius-sm);
+  border-left:2px solid transparent; transition:color var(--dur-fast) var(--ease-standard),
+  background var(--dur-fast) var(--ease-standard); }
+.sg-index a::before { counter-increment:idx; content:counter(idx,decimal-leading-zero);
+  font-family:var(--font-mono); font-size:10.5px; color:var(--text-disabled); }
+.sg-index a:hover { color:var(--brand-text); background:var(--bg-muted); }
+
+.sg-main { display:flex; flex-direction:column; gap:var(--space-20); min-width:0; }
+.sg-sec { display:flex; flex-direction:column; gap:var(--space-6); scroll-margin-top:var(--space-6); }
+.sg-sec > h2 { font-family:var(--font-display); font-size:clamp(1.5rem,1.2rem+1.1vw,2rem);
+  font-weight:600; letter-spacing:-.015em; line-height:1.2; margin:0; text-wrap:balance;
+  padding-bottom:var(--space-3); border-bottom:1px solid var(--border-default); }
+.sg-sec > h2 small { display:block; font-family:var(--font-sans); font-size:13px; font-weight:400;
+  letter-spacing:0; color:var(--text-muted); margin-top:var(--space-2); max-width:70ch; }
+.sg-sub { font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--text-muted); margin:var(--space-2) 0 0; }
+.sg-note { font-size:13.5px; color:var(--text-secondary); max-width:72ch; margin:0; }
+.sg-note strong { color:var(--text-primary); font-weight:600; }
+.sg-rule { background:var(--brand-tint); border:1px solid var(--brand-tint-border);
+  border-radius:var(--radius-lg); padding:var(--space-4) var(--space-5); font-size:13.5px;
+  color:var(--text-primary); max-width:80ch; }
+.sg-rule b { color:var(--brand-text); }
+.tok { font-family:var(--font-mono); font-size:11.5px; color:var(--text-muted); }
+
+/* ---------- swatches ---------- */
+.sg-ramp { display:grid; grid-template-columns:repeat(auto-fit,minmax(96px,1fr)); gap:var(--space-2); }
+.sw { border-radius:var(--radius-md); overflow:hidden; border:1px solid var(--border-default);
+  background:var(--bg-surface); }
+.sw i { display:block; height:60px; }
+.sw b { display:block; font-family:var(--font-mono); font-size:10.5px; font-weight:500;
+  padding:6px 8px 2px; color:var(--text-primary); }
+.sw em { display:block; font-family:var(--font-mono); font-size:10px; font-style:normal;
+  padding:0 8px 7px; color:var(--text-muted); text-transform:uppercase; }
+.sw.is-core { outline:2px solid var(--accent-solid); outline-offset:-2px; }
+
+/* ---------- contrast table ---------- */
+.sg-scroll { overflow-x:auto; border:1px solid var(--border-default); border-radius:var(--radius-lg);
+  background:var(--bg-surface); }
+table.sg-t { width:100%; border-collapse:collapse; font-size:13.5px; min-width:520px; }
+table.sg-t th { text-align:left; font-size:11px; font-weight:600; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--text-secondary); background:var(--bg-subtle);
+  padding:11px var(--space-4); border-bottom:1px solid var(--border-default); white-space:nowrap; }
+table.sg-t td { padding:11px var(--space-4); border-bottom:1px solid var(--border-subtle);
+  vertical-align:middle; }
+table.sg-t tr:last-child td { border-bottom:0; }
+table.sg-t td.num { text-align:right; font-variant-numeric:tabular-nums; font-family:var(--font-mono);
+  font-size:12.5px; }
+table.sg-t code { font-family:var(--font-mono); font-size:12px; color:var(--text-secondary); }
+
+.chip { display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600;
+  padding:3px 10px; border-radius:var(--radius-pill); border:1px solid transparent; white-space:nowrap; }
+.chip.ok   { background:var(--success-50); color:var(--success-700); border-color:var(--success-200); }
+.chip.warn { background:var(--warning-50); color:var(--warning-700); border-color:var(--warning-200); }
+.chip.bad  { background:var(--danger-50);  color:var(--danger-700);  border-color:var(--danger-200); }
+.chip.info { background:var(--info-50);    color:var(--info-700);    border-color:var(--info-200); }
+.chip.mute { background:var(--bg-muted);   color:var(--text-secondary); border-color:var(--border-default); }
+.chip.vio  { background:var(--violet-50);  color:var(--violet-500); border-color:rgba(124,58,237,.3); }
+:root[data-theme="dark"] .chip.vio { background:rgba(124,58,237,.16); color:#C4A8FA; }
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .chip.vio { background:rgba(124,58,237,.16); color:#C4A8FA; } }
+
+/* ---------- type specimens ---------- */
+.sg-type { display:flex; flex-direction:column; gap:var(--space-5); }
+.sg-type-row { display:grid; gap:var(--space-1); padding-bottom:var(--space-5);
+  border-bottom:1px solid var(--border-subtle); }
+.sg-type-row:last-child { border-bottom:0; padding-bottom:0; }
+.sg-type-row .tok { display:flex; flex-wrap:wrap; gap:var(--space-3); }
+.spec { font-family:var(--font-display); color:var(--text-primary); margin:0; text-wrap:balance; }
+.spec.sans { font-family:var(--font-sans); }
+.d1 { font-size:clamp(2.5rem,1.5rem+4.4vw,4.5rem); line-height:1.05; letter-spacing:-.025em; font-weight:600; }
+.d2 { font-size:clamp(2rem,1.4rem+2.8vw,3.25rem); line-height:1.1; letter-spacing:-.02em; font-weight:600; }
+.t1 { font-size:clamp(1.875rem,1.4rem+2.2vw,3rem); line-height:1.15; letter-spacing:-.02em; font-weight:600; }
+.t2 { font-size:clamp(1.5rem,1.25rem+1.2vw,2.25rem); line-height:1.2; letter-spacing:-.015em; font-weight:600; }
+.t3 { font-size:1.75rem; line-height:1.25; font-weight:600; }
+.t5 { font-size:1.125rem; line-height:1.4; font-weight:600; }
+.lead { font-size:1.1875rem; line-height:1.7; font-weight:400; color:var(--text-secondary); }
+.bodytx { font-size:1rem; line-height:1.65; max-width:68ch; color:var(--text-primary); }
+.overline { font-size:.75rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--accent-text); }
+
+/* ---------- spacing ---------- */
+.sg-space { display:flex; flex-direction:column; gap:var(--space-2); }
+.sp-row { display:grid; grid-template-columns:78px 46px 1fr; align-items:center; gap:var(--space-3); }
+.sp-row .tok { font-size:11.5px; }
+.sp-row .num { font-family:var(--font-mono); font-size:11.5px; color:var(--text-secondary);
+  text-align:right; font-variant-numeric:tabular-nums; }
+.sp-bar { height:14px; border-radius:var(--radius-xs); background:var(--brand-solid); opacity:.85; }
+
+/* ---------- elevation ---------- */
+.sg-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:var(--space-4); }
+.elev { background:var(--bg-surface); border-radius:var(--radius-lg); padding:var(--space-5);
+  min-height:104px; display:flex; flex-direction:column; justify-content:flex-end; gap:2px; }
+.elev strong { font-family:var(--font-mono); font-size:11.5px; font-weight:500; }
+.elev span { font-size:11px; color:var(--text-muted); }
+.r-demo { display:flex; flex-wrap:wrap; gap:var(--space-4); }
+.r-box { width:78px; height:78px; background:var(--brand-tint); border:1px solid var(--brand-tint-border);
+  display:flex; align-items:flex-end; justify-content:center; padding-bottom:6px;
+  font-family:var(--font-mono); font-size:10.5px; color:var(--brand-text); }
+
+/* ---------- glass ---------- */
+.glass-stage { border-radius:var(--radius-xl); padding:var(--space-8); position:relative;
+  overflow:hidden; background:
+    radial-gradient(120% 90% at 12% 18%, #2C7A57 0%, transparent 58%),
+    radial-gradient(110% 100% at 88% 82%, #B07C1C 0%, transparent 55%),
+    linear-gradient(135deg,#0F3929,#071F16); }
+.glass-panel { background:var(--glass-bg); border:1px solid var(--glass-border);
+  border-radius:var(--radius-lg); padding:var(--space-5); max-width:400px; color:var(--text-primary); }
+@supports (backdrop-filter: blur(16px)) {
+  .glass-panel { backdrop-filter:blur(16px) saturate(180%); -webkit-backdrop-filter:blur(16px) saturate(180%); }
+}
+.glass-panel h4 { margin:0 0 var(--space-2); font-size:15px; font-weight:600; }
+.glass-panel p { margin:0; font-size:13px; color:var(--text-secondary); }
+.glass-brand { background:rgba(7,31,22,.55); border:1px solid rgba(198,139,27,.22); color:#fff; }
+.glass-brand p { color:rgba(255,255,255,.74); }
+
+/* ---------- buttons ---------- */
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:var(--space-2);
+  font-family:inherit; font-size:14px; font-weight:600; line-height:1; height:40px; padding:0 18px;
+  border-radius:var(--radius-md); border:1px solid transparent; cursor:pointer; white-space:nowrap;
+  transition:background var(--dur-fast) var(--ease-standard), transform var(--dur-fast) var(--ease-standard),
+             box-shadow var(--dur-fast) var(--ease-standard), color var(--dur-fast) var(--ease-standard); }
+.btn:hover:not(:disabled) { transform:translateY(-1px); box-shadow:var(--shadow-md); }
+.btn:active:not(:disabled) { transform:translateY(0) scale(.98); box-shadow:var(--shadow-xs); }
+.btn:focus-visible { outline:none; box-shadow:var(--shadow-focus); }
+.btn:disabled { opacity:.5; cursor:not-allowed; transform:none; box-shadow:none; }
+.btn-primary { background:var(--brand-solid); color:#fff; }
+.btn-primary:hover:not(:disabled) { background:var(--brand-hover); }
+.btn-accent { background:var(--accent-solid); color:var(--accent-on-solid); }
+.btn-accent:hover:not(:disabled) { background:var(--accent-hover); }
+.btn-secondary { background:var(--bg-surface); color:var(--text-primary); border-color:var(--border-default); }
+.btn-secondary:hover:not(:disabled) { background:var(--bg-subtle); }
+.btn-outline { background:transparent; color:var(--brand-text); border-color:currentColor; }
+.btn-outline:hover:not(:disabled) { background:var(--brand-tint); }
+.btn-ghost { background:transparent; color:var(--text-secondary); }
+.btn-ghost:hover:not(:disabled) { background:var(--bg-muted); color:var(--text-primary); }
+.btn-danger { background:var(--danger-500); color:#fff; }
+.btn-danger:hover:not(:disabled) { background:var(--danger-700); }
+.btn-danger-soft { background:var(--danger-50); color:var(--danger-700); border-color:var(--danger-200); }
+.btn-xs { height:28px; padding:0 10px; font-size:12px; border-radius:var(--radius-sm); }
+.btn-sm { height:34px; padding:0 14px; font-size:13px; border-radius:var(--radius-sm); }
+.btn-lg { height:48px; padding:0 24px; font-size:15px; }
+.btn-xl { height:56px; padding:0 32px; font-size:16px; }
+.btn-row { display:flex; flex-wrap:wrap; gap:var(--space-3); align-items:center; }
+.spinner { width:15px; height:15px; border:2px solid currentColor; border-right-color:transparent;
+  border-radius:50%; animation:spin .7s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+@media (prefers-reduced-motion:reduce) { .spinner { animation-duration:2.4s; } }
+
+/* ---------- forms ---------- */
+.field { display:flex; flex-direction:column; gap:var(--space-2); }
+.field > label { font-size:13px; font-weight:600; color:var(--text-primary); }
+.field > label .req { color:var(--danger-500); margin-left:2px; }
+.inp { height:40px; padding:0 12px; font-family:inherit; font-size:14px; color:var(--text-primary);
+  background:var(--bg-surface); border:1px solid var(--border-strong); border-radius:var(--radius-md);
+  width:100%; transition:border-color var(--dur-fast) var(--ease-standard),
+  box-shadow var(--dur-fast) var(--ease-standard); }
+.inp::placeholder { color:var(--text-disabled); }
+.inp:hover:not(:disabled) { border-color:var(--neutral-400); }
+.inp:focus { outline:none; border-color:var(--green-500); box-shadow:var(--shadow-focus); }
+.inp:disabled { background:var(--bg-muted); color:var(--text-disabled); cursor:not-allowed; }
+.inp.err { border-color:var(--danger-500); }
+.inp.err:focus { box-shadow:0 0 0 3px rgba(220,38,38,.25); }
+.help { font-size:12px; color:var(--text-muted); }
+.help.bad { color:var(--danger-700); display:flex; align-items:center; gap:5px; }
+.field-grid { display:grid; grid-template-columns:1fr; gap:var(--space-4); }
+@media (min-width:640px) { .field-grid { grid-template-columns:1fr 1fr; } }
+.w-cnic { max-width:240px; }
+.igroup { display:flex; }
+.igroup .pre { display:flex; align-items:center; padding:0 12px; font-size:13px; font-weight:500;
+  color:var(--text-secondary); background:var(--bg-subtle); border:1px solid var(--border-strong);
+  border-right:0; border-radius:var(--radius-md) 0 0 var(--radius-md); }
+.igroup .inp { border-radius:0 var(--radius-md) var(--radius-md) 0; }
+.drop { border:2px dashed var(--border-strong); border-radius:var(--radius-lg); padding:var(--space-8);
+  text-align:center; color:var(--text-muted); font-size:13.5px; background:var(--bg-surface);
+  transition:border-color var(--dur-fast) var(--ease-standard), background var(--dur-fast) var(--ease-standard); }
+.drop:hover { border-color:var(--green-500); background:var(--brand-tint); color:var(--brand-text); }
+
+/* ---------- cards ---------- */
+.card { background:var(--bg-surface); border:1px solid var(--border-subtle);
+  border-radius:var(--radius-lg); padding:var(--space-6); box-shadow:var(--shadow-sm); }
+.card.flat { box-shadow:none; border-color:var(--border-default); }
+.card.lift { transition:transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out); }
+.card.lift:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); }
+.kpi { position:relative; padding-left:var(--space-6); overflow:hidden;
+  display:flex; flex-direction:column; gap:var(--space-1); }
+.kpi::before { content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--bar,var(--brand-solid)); }
+.kpi .lbl { font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--text-muted); }
+.kpi .val { font-size:1.75rem; font-weight:700; line-height:1.1; font-variant-numeric:tabular-nums;
+  color:var(--text-primary); }
+.kpi .ico { position:absolute; top:var(--space-5); right:var(--space-5); width:40px; height:40px;
+  border-radius:var(--radius-md); display:grid; place-items:center; font-size:19px; }
+.notice { position:relative; padding-left:var(--space-6); }
+.notice::before { content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
+  background:var(--bar,var(--info-500)); }
+.notice h4 { margin:0 0 var(--space-1); font-size:15px; font-weight:600; }
+.notice p { margin:0 0 var(--space-3); font-size:13.5px; color:var(--text-secondary); }
+.datebox { flex:0 0 auto; width:56px; height:56px; border-radius:var(--radius-md);
+  background:var(--brand-tint); color:var(--brand-text); display:flex; flex-direction:column;
+  align-items:center; justify-content:center; line-height:1; }
+.datebox b { font-size:20px; font-weight:700; font-variant-numeric:tabular-nums; }
+.datebox span { font-size:10px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; margin-top:3px; }
+
+/* ---------- alerts ---------- */
+.alert { display:flex; gap:var(--space-3); border-radius:var(--radius-lg); padding:var(--space-4);
+  border:1px solid; border-left-width:3px; font-size:13.5px; }
+.alert .ic { font-size:17px; line-height:1.3; }
+.alert b { display:block; margin-bottom:2px; font-size:14px; }
+.alert p { margin:0; opacity:.92; }
+.a-success { background:var(--success-50); border-color:var(--success-200); border-left-color:var(--success-500); color:var(--success-700); }
+.a-warning { background:var(--warning-50); border-color:var(--warning-200); border-left-color:var(--warning-500); color:var(--warning-700); }
+.a-danger  { background:var(--danger-50);  border-color:var(--danger-200);  border-left-color:var(--danger-500);  color:var(--danger-700); }
+.a-info    { background:var(--info-50);    border-color:var(--info-200);    border-left-color:var(--info-500);    color:var(--info-700); }
+
+/* ---------- sidebar demo ---------- */
+.side { background:var(--sidebar-bg); border-radius:var(--radius-lg); padding:var(--space-3);
+  width:100%; max-width:264px; display:flex; flex-direction:column; gap:2px; }
+.side .grp { font-size:10.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+  color:rgba(255,255,255,.38); padding:var(--space-4) var(--space-3) var(--space-2); }
+.side a { display:flex; align-items:center; gap:10px; height:40px; padding:0 12px;
+  border-radius:var(--radius-md); color:rgba(255,255,255,.70); text-decoration:none; font-size:14px;
+  font-weight:500; position:relative; transition:background var(--dur-fast) var(--ease-standard),
+  color var(--dur-fast) var(--ease-standard); }
+.side a:hover { background:rgba(255,255,255,.06); color:#fff; }
+.side a.on { background:rgba(38,133,93,.22); color:#fff; font-weight:600; }
+.side a.on::before { content:""; position:absolute; left:0; top:8px; bottom:8px; width:3px;
+  border-radius:0 2px 2px 0; background:var(--gold-500); }
+.side a .n { margin-left:auto; font-size:11px; font-weight:600; background:var(--danger-500);
+  color:#fff; min-width:18px; height:18px; border-radius:var(--radius-pill); display:grid;
+  place-items:center; padding:0 5px; font-variant-numeric:tabular-nums; }
+.side .ic { width:20px; text-align:center; font-size:15px; }
+
+/* ---------- misc ---------- */
+.stack { display:flex; flex-direction:column; gap:var(--space-4); }
+.wrap-row { display:flex; flex-wrap:wrap; gap:var(--space-3); align-items:center; }
+.two { display:grid; grid-template-columns:1fr; gap:var(--space-6); }
+@media (min-width:760px) { .two { grid-template-columns:1fr 1fr; } }
+.three { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:var(--space-4); }
+
+.sg-foot { border-top:1px solid var(--border-default); padding:var(--space-8) 0 var(--space-16);
+  color:var(--text-muted); font-size:13px; display:flex; flex-wrap:wrap; gap:var(--space-4);
+  justify-content:space-between; }
+.sg-foot code { font-family:var(--font-mono); font-size:12px; color:var(--text-secondary); }
+</style>
+
+<div class="sg">
+
+  <header class="sg-masthead">
+    <div class="sg-wrap">
+      <p class="sg-eyebrow">Phase 2 Deliverable · Design System v1.0</p>
+      <h1>IIUI Schools &amp; College, Mardan Campus</h1>
+      <p>The complete visual language for the public website, the admin console, and the student &amp; parent portals — every token, component, and rule that the build phases draw from.</p>
+      <div class="sg-meta">
+        <span>Campus Green #14563D</span>
+        <span>Heritage Gold #C68B1B</span>
+        <span>WCAG 2.1 AA</span>
+        <span>Light + Dark</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="sg-wrap sg-body">
+
+    <nav class="sg-index" aria-label="Sections">
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="#color">Colour</a></li>
+        <li><a href="#contrast">Contrast</a></li>
+        <li><a href="#status">Status colours</a></li>
+        <li><a href="#type">Typography</a></li>
+        <li><a href="#space">Spacing</a></li>
+        <li><a href="#radius">Radius</a></li>
+        <li><a href="#elevation">Elevation</a></li>
+        <li><a href="#glass">Glass</a></li>
+        <li><a href="#buttons">Buttons</a></li>
+        <li><a href="#forms">Forms</a></li>
+        <li><a href="#cards">Cards</a></li>
+        <li><a href="#tables">Tables</a></li>
+        <li><a href="#alerts">Alerts</a></li>
+        <li><a href="#nav">Navigation</a></li>
+        <li><a href="#motion">Motion</a></li>
+      </ol>
+    </nav>
+
+    <main class="sg-main">
+
+      <!-- ============ COLOUR ============ -->
+      <section class="sg-sec" id="color">
+        <h2>Colour
+          <small>Two brand ramps and one neutral ramp. The neutral carries a slight green bias — a pure grey beside a green brand always looks faintly broken.</small>
+        </h2>
+
+        <p class="sg-sub">Primary — Campus Green</p>
+        <div class="sg-ramp">
+          <div class="sw"><i style="background:#ECF7F1"></i><b>50</b><em>ECF7F1</em></div>
+          <div class="sw"><i style="background:#D3ECDF"></i><b>100</b><em>D3ECDF</em></div>
+          <div class="sw"><i style="background:#A8D9C0"></i><b>200</b><em>A8D9C0</em></div>
+          <div class="sw"><i style="background:#74C09C"></i><b>300</b><em>74C09C</em></div>
+          <div class="sw"><i style="background:#45A379"></i><b>400</b><em>45A379</em></div>
+          <div class="sw"><i style="background:#26855D"></i><b>500</b><em>26855D</em></div>
+          <div class="sw"><i style="background:#1A6B4A"></i><b>600</b><em>1A6B4A</em></div>
+          <div class="sw is-core"><i style="background:#14563D"></i><b>700 ★</b><em>14563D</em></div>
+          <div class="sw"><i style="background:#124531"></i><b>800</b><em>124531</em></div>
+          <div class="sw"><i style="background:#0F3929"></i><b>900</b><em>0F3929</em></div>
+          <div class="sw"><i style="background:#071F16"></i><b>950</b><em>071F16</em></div>
+        </div>
+
+        <p class="sg-sub">Accent — Heritage Gold</p>
+        <div class="sg-ramp">
+          <div class="sw"><i style="background:#FDF8EC"></i><b>50</b><em>FDF8EC</em></div>
+          <div class="sw"><i style="background:#FAEECF"></i><b>100</b><em>FAEECF</em></div>
+          <div class="sw"><i style="background:#F4DA9C"></i><b>200</b><em>F4DA9C</em></div>
+          <div class="sw"><i style="background:#EBC162"></i><b>300</b><em>EBC162</em></div>
+          <div class="sw"><i style="background:#DFA733"></i><b>400</b><em>DFA733</em></div>
+          <div class="sw is-core"><i style="background:#C68B1B"></i><b>500 ★</b><em>C68B1B</em></div>
+          <div class="sw"><i style="background:#A67114"></i><b>600</b><em>A67114</em></div>
+          <div class="sw"><i style="background:#855913"></i><b>700</b><em>855913</em></div>
+          <div class="sw"><i style="background:#6D4915"></i><b>800</b><em>6D4915</em></div>
+          <div class="sw"><i style="background:#5C3D16"></i><b>900</b><em>5C3D16</em></div>
+        </div>
+
+        <p class="sg-sub">Neutral — Warm Slate</p>
+        <div class="sg-ramp">
+          <div class="sw"><i style="background:#FFFFFF;box-shadow:inset 0 0 0 1px #DFE5E2"></i><b>0</b><em>FFFFFF</em></div>
+          <div class="sw"><i style="background:#F7F9F8"></i><b>50</b><em>F7F9F8</em></div>
+          <div class="sw"><i style="background:#EEF2F0"></i><b>100</b><em>EEF2F0</em></div>
+          <div class="sw"><i style="background:#DFE5E2"></i><b>200</b><em>DFE5E2</em></div>
+          <div class="sw"><i style="background:#C6D0CC"></i><b>300</b><em>C6D0CC</em></div>
+          <div class="sw"><i style="background:#9AA8A3"></i><b>400</b><em>9AA8A3</em></div>
+          <div class="sw"><i style="background:#71807B"></i><b>500</b><em>71807B</em></div>
+          <div class="sw"><i style="background:#57645F"></i><b>600</b><em>57645F</em></div>
+          <div class="sw"><i style="background:#434E4A"></i><b>700</b><em>434E4A</em></div>
+          <div class="sw"><i style="background:#2D3733"></i><b>800</b><em>2D3733</em></div>
+          <div class="sw"><i style="background:#1C2421"></i><b>900</b><em>1C2421</em></div>
+          <div class="sw"><i style="background:#111714"></i><b>950</b><em>111714</em></div>
+        </div>
+
+        <div class="sg-rule">
+          <b>The green-on-green problem.</b> Brand primary and semantic success are both green. They are separated three ways: success is brighter and teal-shifted (<code class="tok">#0E9F6E</code> vs <code class="tok">#14563D</code>); success only ever appears as a soft tinted chip, never as a solid button — solid green means “primary action”; and every semantic state carries an icon plus a text label, so meaning never rests on hue. A success badge and a primary button never sit adjacent.
+        </div>
+      </section>
+
+      <!-- ============ CONTRAST ============ -->
+      <section class="sg-sec" id="contrast">
+        <h2>Contrast, measured
+          <small>Accessibility is guaranteed at the token level, not discovered in QA. Two tokens in this system are deliberately surface-only — they are not text colours, and the table says so.</small>
+        </h2>
+        <div class="sg-scroll">
+          <table class="sg-t">
+            <thead>
+              <tr><th>Pair</th><th>Ratio</th><th>Verdict</th><th>Use</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>green-700</code> on white</td><td class="num">8.64:1</td><td><span class="chip ok">AAA</span></td><td>Primary buttons, headings, links</td></tr>
+              <tr><td><code>neutral-900</code> on white</td><td class="num">14.9:1</td><td><span class="chip ok">AAA</span></td><td>Body text</td></tr>
+              <tr><td><code>neutral-600</code> on white</td><td class="num">6.4:1</td><td><span class="chip ok">AA</span></td><td>Secondary text</td></tr>
+              <tr><td><code>neutral-500</code> on white</td><td class="num">4.6:1</td><td><span class="chip ok">AA</span></td><td>Muted text — the floor</td></tr>
+              <tr><td><code>neutral-400</code> on white</td><td class="num">2.8:1</td><td><span class="chip bad">Fails</span></td><td>Placeholder &amp; disabled only</td></tr>
+              <tr><td><code>gold-700</code> on white</td><td class="num">6.1:1</td><td><span class="chip ok">AA</span></td><td>Gold text on light grounds</td></tr>
+              <tr><td><code>gold-500</code> on white</td><td class="num">2.95:1</td><td><span class="chip bad">Fails</span></td><td><strong>Surface only</strong> — never text</td></tr>
+              <tr><td><code>neutral-900</code> on <code>gold-500</code></td><td class="num">5.4:1</td><td><span class="chip ok">AA</span></td><td>Gold button label — dark, never white</td></tr>
+              <tr><td>White on <code>green-700</code></td><td class="num">8.64:1</td><td><span class="chip ok">AAA</span></td><td>Primary button label</td></tr>
+              <tr><td><code>green-400</code> on dark ground</td><td class="num">5.97:1</td><td><span class="chip ok">AA</span></td><td>Dark-mode buttons &amp; icons</td></tr>
+              <tr><td><code>success-500</code> on white</td><td class="num">3.39:1</td><td><span class="chip warn">Large only</span></td><td>Use <code>success-700</code> for text</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ============ STATUS ============ -->
+      <section class="sg-sec" id="status">
+        <h2>Domain status colours
+          <small>School data has states that recur across dozens of screens. Fixing them here means an “Absent” chip is identical in the register, the parent portal, and the printed PDF.</small>
+        </h2>
+        <div class="two">
+          <div class="stack">
+            <p class="sg-sub">Attendance</p>
+            <div class="wrap-row">
+              <span class="chip ok">✓ Present</span>
+              <span class="chip bad">✕ Absent</span>
+              <span class="chip warn">◷ Late</span>
+              <span class="chip info">✉ Leave</span>
+              <span class="chip vio">◐ Half day</span>
+            </div>
+            <p class="sg-sub">Fee status</p>
+            <div class="wrap-row">
+              <span class="chip ok">✓ Paid</span>
+              <span class="chip warn">◑ Partial</span>
+              <span class="chip mute">○ Unpaid</span>
+              <span class="chip bad">! Overdue</span>
+            </div>
+          </div>
+          <div class="stack">
+            <p class="sg-sub">Grade bands</p>
+            <div class="wrap-row">
+              <span class="chip ok">A+ / A</span>
+              <span class="chip info">B+ / B</span>
+              <span class="chip warn">C / D</span>
+              <span class="chip bad">F / Absent</span>
+            </div>
+            <p class="sg-sub">Publication</p>
+            <div class="wrap-row">
+              <span class="chip mute">Draft</span>
+              <span class="chip ok">Published</span>
+              <span class="chip info">Scheduled</span>
+              <span class="chip mute">Archived</span>
+            </div>
+            <p class="sg-note" style="margin-top:var(--space-2)">Every status renders as <strong>icon + text</strong>. Colour alone is never the carrier of meaning — for colour-blind users and for the printed register, which is monochrome.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ TYPOGRAPHY ============ -->
+      <section class="sg-sec" id="type">
+        <h2>Typography
+          <small>Two type systems, because a marketing page and a data console have opposite needs. Public: Source Serif 4 display over Inter body. Admin: Inter throughout — a serif in a data table is noise.</small>
+        </h2>
+
+        <div class="sg-type">
+          <div class="sg-type-row">
+            <span class="tok"><span>--fs-display-1</span><span>clamp(2.5rem → 4.5rem)</span><span>600 / 1.05 / −0.025em</span></span>
+            <p class="spec d1">Knowledge with Character</p>
+          </div>
+          <div class="sg-type-row">
+            <span class="tok"><span>--fs-h1</span><span>clamp(1.875rem → 3rem)</span><span>600 / 1.15</span></span>
+            <p class="spec t1">Admissions Open for 2026–2027</p>
+          </div>
+          <div class="sg-type-row">
+            <span class="tok"><span>--fs-h2</span><span>clamp(1.5rem → 2.25rem)</span><span>600 / 1.2</span></span>
+            <p class="spec t2">Academic Programmes</p>
+          </div>
+          <div class="sg-type-row">
+            <span class="tok"><span>--fs-h3</span><span>28px</span><span>600 / 1.25</span></span>
+            <p class="spec t3">Pre-Medical &amp; Pre-Engineering</p>
+          </div>
+          <div class="sg-type-row">
+            <span class="tok"><span>--fs-overline</span><span>12px</span><span>600 / +0.1em / uppercase</span></span>
+            <p class="spec sans overline">Mardan Campus</p>
+          </div>
+          <div class="sg-type-row">
+            <span class="tok"><span>--fs-lead</span><span>19px</span><span>400 / 1.7</span></span>
+            <p class="spec sans lead">A campus of the International Islamic University Islamabad, offering matriculation and intermediate programmes to students across Mardan district.</p>
+          </div>
+          <div class="sg-type-row">
+            <span class="tok"><span>--fs-body</span><span>16px</span><span>400 / 1.65 / max 68ch</span></span>
+            <p class="spec sans bodytx">Body copy is capped at a 68-character measure. A paragraph that runs the full width of a 1440px screen is a readability failure regardless of how much space is available — the eye loses its place on the return sweep. This is why the reading column is narrower than the container that holds it.</p>
+          </div>
+          <div class="sg-type-row">
+            <span class="tok"><span>--fs-admin-body</span><span>14px</span><span>400 / 1.6 · admin base</span></span>
+            <p class="spec sans" style="font-size:14px;max-width:68ch;color:var(--text-secondary)">Admin text sits at 14px with a 1.200 scale. The console is denser because it is operated, not read — a fee clerk scanning 200 challans needs rows, not prose.</p>
+          </div>
+        </div>
+
+        <div class="sg-rule">
+          <b>Numerals are always tabular.</b> Every table cell, fee amount, mark, date, and KPI uses <code class="tok">font-variant-numeric: tabular-nums</code>. Proportional digits make a column of amounts visibly ragged: <span style="font-variant-numeric:tabular-nums">12,500 · 8,750 · 141,000</span> aligns; the same figures in proportional digits do not.
+        </div>
+        <p class="sg-note"><strong>Urdu.</strong> <code class="tok">[lang="ur"]</code> switches to Noto Nastaliq Urdu at <code class="tok">line-height: 2.05</code> and <code class="tok">direction: rtl</code>. Nastaliq descends far below the baseline and clips at normal leading — this is a functional requirement, not a refinement.</p>
+      </section>
+
+      <!-- ============ SPACING ============ -->
+      <section class="sg-sec" id="space">
+        <h2>Spacing
+          <small>4px base, 8px rhythm. There are no arbitrary values — <code class="tok">margin-top: 18px</code> is a review rejection. If the scale doesn’t fit, the layout is wrong.</small>
+        </h2>
+        <div class="sg-space">
+          <div class="sp-row"><span class="tok">--space-1</span><span class="num">4</span><span class="sp-bar" style="width:4px"></span></div>
+          <div class="sp-row"><span class="tok">--space-2</span><span class="num">8</span><span class="sp-bar" style="width:8px"></span></div>
+          <div class="sp-row"><span class="tok">--space-3</span><span class="num">12</span><span class="sp-bar" style="width:12px"></span></div>
+          <div class="sp-row"><span class="tok">--space-4</span><span class="num">16</span><span class="sp-bar" style="width:16px"></span></div>
+          <div class="sp-row"><span class="tok">--space-5</span><span class="num">20</span><span class="sp-bar" style="width:20px"></span></div>
+          <div class="sp-row"><span class="tok">--space-6</span><span class="num">24</span><span class="sp-bar" style="width:24px"></span></div>
+          <div class="sp-row"><span class="tok">--space-8</span><span class="num">32</span><span class="sp-bar" style="width:32px"></span></div>
+          <div class="sp-row"><span class="tok">--space-10</span><span class="num">40</span><span class="sp-bar" style="width:40px"></span></div>
+          <div class="sp-row"><span class="tok">--space-12</span><span class="num">48</span><span class="sp-bar" style="width:48px"></span></div>
+          <div class="sp-row"><span class="tok">--space-16</span><span class="num">64</span><span class="sp-bar" style="width:64px"></span></div>
+          <div class="sp-row"><span class="tok">--space-20</span><span class="num">80</span><span class="sp-bar" style="width:80px"></span></div>
+          <div class="sp-row"><span class="tok">--space-24</span><span class="num">96</span><span class="sp-bar" style="width:96px"></span></div>
+        </div>
+        <div class="sg-rule">
+          <b>Proximity law.</b> The gap above a heading is always at least twice the gap below it. That single ratio is what makes a page scan as grouped blocks instead of an undifferentiated column.
+        </div>
+      </section>
+
+      <!-- ============ RADIUS ============ -->
+      <section class="sg-sec" id="radius">
+        <h2>Radius
+          <small>Nesting rule: an inner element’s radius equals the outer radius minus the padding. Concentric corners that ignore padding look wrong even when nobody can say why.</small>
+        </h2>
+        <div class="r-demo">
+          <div class="r-box" style="border-radius:4px">4 · xs</div>
+          <div class="r-box" style="border-radius:6px">6 · sm</div>
+          <div class="r-box" style="border-radius:10px">10 · md</div>
+          <div class="r-box" style="border-radius:14px">14 · lg</div>
+          <div class="r-box" style="border-radius:20px">20 · xl</div>
+          <div class="r-box" style="border-radius:28px">28 · 2xl</div>
+          <div class="r-box" style="border-radius:999px">pill</div>
+        </div>
+      </section>
+
+      <!-- ============ ELEVATION ============ -->
+      <section class="sg-sec" id="elevation">
+        <h2>Elevation
+          <small>Every shadow is two-layer — a tight contact shadow plus a wide ambient one, the way real light behaves — and tinted with <code class="tok">neutral-950</code>, never pure black.</small>
+        </h2>
+        <div class="sg-grid">
+          <div class="elev" style="box-shadow:var(--shadow-xs)"><strong>--shadow-xs</strong><span>Inputs, table header</span></div>
+          <div class="elev" style="box-shadow:var(--shadow-sm)"><strong>--shadow-sm</strong><span>Resting cards, navbar</span></div>
+          <div class="elev" style="box-shadow:var(--shadow-md)"><strong>--shadow-md</strong><span>Card hover, dropdowns</span></div>
+          <div class="elev" style="box-shadow:var(--shadow-lg)"><strong>--shadow-lg</strong><span>Modals, mega menu</span></div>
+          <div class="elev" style="box-shadow:var(--shadow-xl)"><strong>--shadow-xl</strong><span>Hero cards, ⌘K palette</span></div>
+          <div class="elev" style="box-shadow:var(--shadow-2xl)"><strong>--shadow-2xl</strong><span>Full-screen overlays</span></div>
+        </div>
+        <div class="sg-rule">
+          <b>Border or shadow — never both</b> at the same strength, or the element gets a visible double edge. Hover raises exactly one step and lifts 2px. In dark mode shadows halve and elevation is carried by <em>surface lightness</em> instead: a shadow on a near-black ground is invisible, but a lighter surface reads as closer.
+        </div>
+      </section>
+
+      <!-- ============ GLASS ============ -->
+      <section class="sg-sec" id="glass">
+        <h2>Glass
+          <small>A spotlight technique, not a theme. Permitted on exactly six surfaces; forbidden on tables, forms, the admin sidebar, and any body text.</small>
+        </h2>
+        <div class="glass-stage">
+          <div class="stack">
+            <div class="glass-panel glass-brand">
+              <h4>Sticky navbar over hero · <span class="tok" style="color:rgba(255,255,255,.6)">--glass-brand</span></h4>
+              <p>Deep green tint with a gold hairline border. Always paired with a 1px light edge — without it the panel has no defined boundary and reads as a rendering artefact.</p>
+            </div>
+            <div class="glass-panel">
+              <h4>Floating bulk-action bar · <span class="tok">--glass-light</span></h4>
+              <p>Appears above the admin table when rows are selected. Contrast is measured against the <em>lightest pixel behind the glass</em>, not against the tint colour.</p>
+            </div>
+          </div>
+        </div>
+        <p class="sg-note"><strong>Maximum three glass surfaces per viewport</strong> — each one forces a separate GPU compositing layer, and <code class="tok">backdrop-filter</code> is the single biggest source of jank on low-end Android. An opaque <code class="tok">@supports</code> fallback ships with every glass rule, and forced-colors mode drops the blur entirely.</p>
+      </section>
+
+      <!-- ============ BUTTONS ============ -->
+      <section class="sg-sec" id="buttons">
+        <h2>Buttons
+          <small>One primary action per view. One gold element per page, and never inside the admin console — there, primary green is the top of the hierarchy.</small>
+        </h2>
+
+        <p class="sg-sub">Variants</p>
+        <div class="btn-row">
+          <button type="button" class="btn btn-primary">Save Student</button>
+          <button type="button" class="btn btn-accent">Apply Now</button>
+          <button type="button" class="btn btn-secondary">Cancel</button>
+          <button type="button" class="btn btn-outline">Download Prospectus</button>
+          <button type="button" class="btn btn-ghost">View details</button>
+          <button type="button" class="btn btn-danger">Delete Student</button>
+          <button type="button" class="btn btn-danger-soft">Cancel Challan</button>
+        </div>
+
+        <p class="sg-sub">Sizes</p>
+        <div class="btn-row">
+          <button type="button" class="btn btn-primary btn-xs">xs · 28</button>
+          <button type="button" class="btn btn-primary btn-sm">sm · 34</button>
+          <button type="button" class="btn btn-primary">md · 40</button>
+          <button type="button" class="btn btn-primary btn-lg">lg · 48</button>
+          <button type="button" class="btn btn-primary btn-xl">xl · 56</button>
+        </div>
+
+        <p class="sg-sub">States</p>
+        <div class="btn-row">
+          <button type="button" class="btn btn-primary">Default</button>
+          <button type="button" class="btn btn-primary" style="background:var(--brand-hover);transform:translateY(-1px);box-shadow:var(--shadow-md)">Hover</button>
+          <button type="button" class="btn btn-primary" style="box-shadow:var(--shadow-focus)">Focus</button>
+          <button type="button" class="btn btn-primary" disabled>Disabled</button>
+          <button type="button" class="btn btn-primary" disabled aria-busy="true"><span class="spinner" aria-hidden="true"></span> Generating…</button>
+        </div>
+
+        <div class="sg-rule">
+          <b>Labels are verb-first and specific.</b> “Save Student”, “Generate Challans” — never “Submit”, “OK”, or “Click here”. A loading button locks its original width so the layout never jumps, and a destructive action is never placed adjacent to the primary one.
+        </div>
+      </section>
+
+      <!-- ============ FORMS ============ -->
+      <section class="sg-sec" id="forms">
+        <h2>Forms
+          <small>Field width matches content type. A 1200px-wide input for a 13-digit CNIC looks broken — and it is.</small>
+        </h2>
+
+        <div class="card">
+          <div class="stack">
+            <div class="field-grid">
+              <div class="field">
+                <label for="sg-n">Student Name <span class="req" aria-hidden="true">*</span></label>
+                <input class="inp" id="sg-n" type="text" placeholder="e.g. Ahmad Ali" value="Ahmad Ali">
+                <span class="help">As it appears on the B-Form.</span>
+              </div>
+              <div class="field">
+                <label for="sg-c">Father’s CNIC <span class="req" aria-hidden="true">*</span></label>
+                <input class="inp err w-cnic" id="sg-c" type="text" value="16101-234" aria-invalid="true" aria-describedby="sg-c-err">
+                <span class="help bad" id="sg-c-err">⚠ CNIC must be 13 digits.</span>
+              </div>
+              <div class="field">
+                <label for="sg-f">Monthly Tuition Fee</label>
+                <div class="igroup">
+                  <span class="pre">PKR</span>
+                  <input class="inp" id="sg-f" type="text" value="4,500" style="font-variant-numeric:tabular-nums">
+                </div>
+              </div>
+              <div class="field">
+                <label for="sg-s">Class &amp; Section</label>
+                <select class="inp" id="sg-s">
+                  <option>Class 9 — Section A</option>
+                  <option>Class 9 — Section B</option>
+                  <option>Class 10 — Section A</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="sg-r">Registration No.</label>
+                <input class="inp" id="sg-r" type="text" value="2026-0451" readonly style="background:transparent;border-color:var(--border-subtle);font-family:var(--font-mono)">
+                <span class="help">System-generated. Read-only, not disabled — it is real data.</span>
+              </div>
+              <div class="field">
+                <label for="sg-d">Previous School</label>
+                <input class="inp" id="sg-d" type="text" placeholder="Not applicable" disabled>
+                <span class="help">Disabled until “Transferred student” is ticked.</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="sg-u">Student Photograph</label>
+              <div class="drop" id="sg-u" tabindex="0" role="button">
+                Drag a photo here, or <span style="color:var(--brand-text);font-weight:600;text-decoration:underline">browse</span><br>
+                <span style="font-size:12px">JPG or PNG · max 2 MB · opens the 1:1 cropper</span>
+              </div>
+            </div>
+
+            <div class="btn-row" style="justify-content:flex-end;border-top:1px solid var(--border-subtle);padding-top:var(--space-4)">
+              <button type="button" class="btn btn-ghost">Cancel</button>
+              <button type="button" class="btn btn-primary">Save Student</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="sg-rule">
+          <b>Validation timing.</b> Validate on <em>blur</em> first. Once a field has errored, re-validate on <em>input</em> so the user watches the error clear as they fix it. Never validate while someone is still typing their first attempt — it is the fastest way to make a form feel hostile.
+        </div>
+        <p class="sg-note">Inputs are 16px on mobile. Below 16px, iOS Safari zooms the viewport on focus — a layout bug disguised as a type choice.</p>
+      </section>
+
+      <!-- ============ CARDS ============ -->
+      <section class="sg-sec" id="cards">
+        <h2>Cards
+          <small>Elevated on the public site; outlined in the admin console, where twenty shadowed tiles is just noise.</small>
+        </h2>
+
+        <p class="sg-sub">KPI tiles — admin dashboard</p>
+        <div class="three">
+          <div class="card flat kpi" style="--bar:var(--brand-solid)">
+            <span class="ico" style="background:var(--brand-tint);color:var(--brand-text)">🎓</span>
+            <span class="lbl">Total Students</span>
+            <span class="val">1,248</span>
+            <span><span class="chip ok">↑ 4.2%</span> <span class="tok">vs last session</span></span>
+          </div>
+          <div class="card flat kpi" style="--bar:var(--success-500)">
+            <span class="ico" style="background:var(--success-50);color:var(--success-700)">✓</span>
+            <span class="lbl">Attendance Today</span>
+            <span class="val">94.6%</span>
+            <span><span class="chip warn">↓ 1.1%</span> <span class="tok">vs yesterday</span></span>
+          </div>
+          <div class="card flat kpi" style="--bar:var(--danger-500)">
+            <span class="ico" style="background:var(--danger-50);color:var(--danger-700)">!</span>
+            <span class="lbl">Overdue Challans</span>
+            <span class="val">86</span>
+            <span><span class="chip bad">PKR 412,500</span></span>
+          </div>
+        </div>
+
+        <p class="sg-sub">Notice &amp; event cards — public site</p>
+        <div class="two">
+          <div class="card notice" style="--bar:var(--danger-500)">
+            <h4>Entry Test Rescheduled to 14 August</h4>
+            <p>The Class 9 entry test has moved to Thursday 14 August, 9:00 AM, at the main campus hall. Admit cards remain valid.</p>
+            <div class="wrap-row">
+              <span class="chip bad">! Urgent</span>
+              <span class="chip mute">Parents &amp; Applicants</span>
+            </div>
+          </div>
+          <div class="card lift" style="display:flex;gap:var(--space-4)">
+            <div class="datebox"><b>14</b><span>Aug</span></div>
+            <div style="min-width:0">
+              <h4 style="margin:0 0 4px;font-size:15px;font-weight:600">Annual Science Exhibition</h4>
+              <p style="margin:0 0 var(--space-2);font-size:13.5px;color:var(--text-secondary)">Projects from Classes 9–12 · Main Hall, 10:00 AM</p>
+              <span class="chip info">Open to parents</span>
+            </div>
+          </div>
+        </div>
+        <p class="sg-note">The second card lifts 4px on hover because the <strong>whole card is a link</strong>. A card is either entirely clickable or has explicit action buttons — never both, because nested click targets are an accessibility failure.</p>
+      </section>
+
+      <!-- ============ TABLES ============ -->
+      <section class="sg-sec" id="tables">
+        <h2>Tables
+          <small>The admin console is mostly tables. No zebra striping — with clean dividers it is redundant, and it fights the row hover and selection states.</small>
+        </h2>
+        <div class="sg-scroll">
+          <table class="sg-t">
+            <thead>
+              <tr>
+                <th>Reg. No.</th><th>Student</th><th>Class</th>
+                <th style="text-align:right">Payable</th><th style="text-align:right">Paid</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:var(--brand-tint);box-shadow:inset 3px 0 0 var(--brand-solid)">
+                <td><code>2026-0451</code></td><td>Ahmad Ali</td><td>9-A</td>
+                <td class="num">12,500</td><td class="num">12,500</td>
+                <td><span class="chip ok">✓ Paid</span></td>
+              </tr>
+              <tr>
+                <td><code>2026-0452</code></td><td>Bilal Khan</td><td>9-A</td>
+                <td class="num">12,500</td><td class="num">6,000</td>
+                <td><span class="chip warn">◑ Partial</span></td>
+              </tr>
+              <tr>
+                <td><code>2026-0463</code></td><td>Hamza Iqbal</td><td>9-B</td>
+                <td class="num">12,500</td><td class="num">0</td>
+                <td><span class="chip bad">! Overdue</span></td>
+              </tr>
+              <tr>
+                <td><code>2026-0478</code></td><td>Usman Shah</td><td>10-A</td>
+                <td class="num">141,000</td><td class="num">0</td>
+                <td><span class="chip mute">○ Unpaid</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="sg-note">Numeric columns are right-aligned and <code class="tok">tabular-nums</code>, so <strong>141,000</strong> and <strong>12,500</strong> line up on their digits. The selected row carries a tint <em>and</em> a 3px left bar — selection is never signalled by colour alone. Below <code class="tok">md</code>, this table becomes stacked cards; columns are never silently hidden, because a value that vanishes is worse than one that needs a scroll.</p>
+      </section>
+
+      <!-- ============ ALERTS ============ -->
+      <section class="sg-sec" id="alerts">
+        <h2>Alerts &amp; feedback
+          <small>Errors say what went wrong and how to fix it. No apologies, no vagueness.</small>
+        </h2>
+        <div class="stack">
+          <div class="alert a-success"><span class="ic" aria-hidden="true">✓</span><div><b>Challans generated</b><p>486 challans created for August 2026. Two students were skipped because they have no active enrolment.</p></div></div>
+          <div class="alert a-warning"><span class="ic" aria-hidden="true">⚠</span><div><b>You are viewing the 2025–2026 session</b><p>Marks entered here will not appear in the current session’s results. Switch sessions from the topbar.</p></div></div>
+          <div class="alert a-danger"><span class="ic" aria-hidden="true">✕</span><div><b>Marks exceed the paper total</b><p>Row 14 has 87 marks against a 75-mark paper. Correct the value, then save again.</p></div></div>
+          <div class="alert a-info"><span class="ic" aria-hidden="true">ℹ</span><div><b>Result publication is locked</b><p>Chemistry marks for 9-B are still unverified. Results publish once every subject is verified.</p></div></div>
+        </div>
+        <div class="sg-rule">
+          <b>Destructive confirmations name the object.</b> “Delete student <em>Ahmad Ali (Reg 2026-0451)</em>?” with an explicit consequence line and a button labelled “Delete Student” — never “Yes”. Irreversible actions such as restoring a backup or cancelling a paid challan additionally require typing a confirmation word.
+        </div>
+      </section>
+
+      <!-- ============ NAV ============ -->
+      <section class="sg-sec" id="nav">
+        <h2>Navigation
+          <small>The admin sidebar keeps its deep-green ground in both themes — it is a brand anchor, not a content surface.</small>
+        </h2>
+        <div class="two">
+          <nav class="side" aria-label="Sidebar specimen">
+            <span class="grp">Academics</span>
+            <a href="#nav"><span class="ic" aria-hidden="true">🎓</span> Students <span class="n">12</span></a>
+            <a href="#nav" class="on" aria-current="page"><span class="ic" aria-hidden="true">📅</span> Attendance</a>
+            <a href="#nav"><span class="ic" aria-hidden="true">📓</span> Examinations</a>
+            <span class="grp">Finance</span>
+            <a href="#nav"><span class="ic" aria-hidden="true">🧾</span> Fee Challans <span class="n">86</span></a>
+            <a href="#nav"><span class="ic" aria-hidden="true">💰</span> Payments</a>
+          </nav>
+          <div class="stack">
+            <p class="sg-note"><strong>The gold bar is the only gold in the console.</strong> It marks the active item and ties the admin panel back to the brand without ever competing with a primary action button.</p>
+            <p class="sg-note">Active state = tinted fill <em>plus</em> a 3px gold left bar <em>plus</em> white semibold text <em>plus</em> <code class="tok">aria-current="page"</code>. Four signals, because one is never enough.</p>
+            <p class="sg-note">Collapsed, the rail narrows to 76px with icon-only items and hover tooltips, and the choice is remembered per user. Below <code class="tok">lg</code> it becomes an off-canvas overlay.</p>
+            <div class="sg-rule" style="margin-top:var(--space-2)">
+              <b>Session switcher.</b> The admin topbar carries an academic-session pill that turns amber when a non-current session is selected — the single control that prevents the classic “entered this year’s marks into last year” disaster.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ MOTION ============ -->
+      <section class="sg-sec" id="motion">
+        <h2>Motion
+          <small>Every animation answers “where did this come from?” or “what changed?” Nothing animates to be impressive.</small>
+        </h2>
+        <div class="sg-scroll">
+          <table class="sg-t">
+            <thead><tr><th>Token</th><th>Duration</th><th>Easing</th><th>Applied to</th></tr></thead>
+            <tbody>
+              <tr><td><code>--dur-instant</code></td><td class="num">0ms</td><td><code>—</code></td><td>Validation messages, tab switches — feedback must not wait</td></tr>
+              <tr><td><code>--dur-fast</code></td><td class="num">150ms</td><td><code>standard</code></td><td>Hover, focus, colour change</td></tr>
+              <tr><td><code>--dur-base</code></td><td class="num">200ms</td><td><code>ease-out</code></td><td>Dropdowns, tooltips, toasts, modals</td></tr>
+              <tr><td><code>--dur-slow</code></td><td class="num">300ms</td><td><code>ease-out</code></td><td>Drawers, off-canvas, accordions</td></tr>
+              <tr><td><code>--dur-slower</code></td><td class="num">500ms</td><td><code>ease-out</code></td><td>Hero entrance, page transitions</td></tr>
+              <tr><td><code>--dur-slowest</code></td><td class="num">800ms</td><td><code>ease-out</code></td><td>KPI count-up, chart first draw</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sg-rule">
+          <b>Things enter slower than they leave.</b> A modal opens in 200ms and closes in 150ms; that feels responsive, and the reverse feels sluggish. Only <code class="tok">transform</code> and <code class="tok">opacity</code> are animated — they are the only GPU-composited properties.
+        </div>
+        <p class="sg-note"><strong>AOS scroll animation is public-site only.</strong> An accountant who reloads a table forty times a day does not want it to fade in forty times. Stagger caps at three items × 100ms, and nothing above the fold animates on scroll — that delays perceived load and damages LCP.</p>
+        <p class="sg-note"><strong><code class="tok">prefers-reduced-motion</code> is honoured globally</strong> and is a vestibular-disorder accessibility requirement, not a preference: all durations collapse to 1ms, AOS never initialises, the KPI count-up jumps to its final value, and Swiper autoplay is off.</p>
+      </section>
+
+      <footer class="sg-foot">
+        <span>IIUI Schools &amp; College, Mardan Campus · Design System v1.0</span>
+        <span>Tokens: <code>public/assets/css/tokens.css</code> · Spec: <code>docs/08</code>, <code>docs/09</code></span>
+      </footer>
+
+    </main>
+  </div>
+</div>
